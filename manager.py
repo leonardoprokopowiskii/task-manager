@@ -4,6 +4,14 @@ def add_task(tasks, task_name):
     print(f"Tarefa '{task_name}' adicionada com sucesso!")
     return
 
+def visualize_tasks(tasks):
+    print(f"\nLista de tarefas:")
+    for index, task in enumerate(tasks, start=1):
+        status = "✓" if task['closed'] else " "
+        task_name = task['task']
+        print(f"{index}. [{status}] {task_name}")
+
+
 tasks = []
 
 while True:
@@ -20,6 +28,8 @@ while True:
     if choice == "1":
         task_name = input("\nDigite o nome da tarefa: ")
         add_task(tasks, task_name)
+    elif choice == "2":
+        visualize_tasks(tasks)
     elif choice == "6":
         break
 
