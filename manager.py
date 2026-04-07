@@ -2,7 +2,6 @@ def add_task(tasks, task_name):
     task = {"task": task_name, "closed": False}
     tasks.append(task)
     print(f"Tarefa '{task_name}' adicionada com sucesso!")
-    return
 
 def visualize_tasks(tasks):
     print(f"\nLista de tarefas:")
@@ -11,6 +10,13 @@ def visualize_tasks(tasks):
         task_name = task['task']
         print(f"{index}. [{status}] {task_name}")
 
+def update_task_name(tasks, task_index, new_task_name):
+    adjusted_index = int(task_index) -1
+    if adjusted_index >= 0 and adjusted_index < len(tasks):
+        tasks[adjusted_index]['task'] = new_task_name
+        print(f"Tarefa {task_index} atualizada para '{new_task_name}'")
+    else:
+        print("O índice selecionado é inválido!")
 
 tasks = []
 
@@ -30,6 +36,11 @@ while True:
         add_task(tasks, task_name)
     elif choice == "2":
         visualize_tasks(tasks)
+    elif choice == "3":
+        visualize_tasks(tasks)
+        task_index = input("\nDigite o número da tarefa que deseja atualizar: ")
+        new_name = input("Digite o novo nome da tarefa: ")
+        update_task_name(tasks, task_index, new_name)
     elif choice == "6":
         break
 
