@@ -28,6 +28,12 @@ def closed_task(tasks, task_index):
     else:
         print("O índice selecionado é inválido!")
 
+def delete_closed_tasks(tasks):
+    for task in tasks:
+        if task['closed']:
+            tasks.remove(task)
+    print("\nTarefas completadas foram deletadas!")
+
 tasks = []
 
 while True:
@@ -55,6 +61,9 @@ while True:
         visualize_tasks(tasks)
         task_index = input("\nDigite o número da tarefa que deseja completar: ")
         closed_task(tasks, task_index)
+    elif choice == "5":
+        delete_closed_tasks(tasks)
+        visualize_tasks(tasks)
     elif choice == "6":
         break
 
