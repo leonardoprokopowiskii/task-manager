@@ -18,6 +18,16 @@ def update_task_name(tasks, task_index, new_task_name):
     else:
         print("O índice selecionado é inválido!")
 
+def closed_task(tasks, task_index):
+    adjusted_index = int(task_index) -1
+    if adjusted_index >= 0 and adjusted_index < len(tasks) and tasks[adjusted_index]['closed']:
+        print("A tarefa selecionada já foi completada!")
+    elif adjusted_index >= 0 and adjusted_index < len(tasks) and tasks[adjusted_index]['closed'] == False:
+        tasks[adjusted_index]['closed'] = True
+        print(f"Tarefa {task_index} foi completada!")
+    else:
+        print("O índice selecionado é inválido!")
+
 tasks = []
 
 while True:
@@ -41,6 +51,10 @@ while True:
         task_index = input("\nDigite o número da tarefa que deseja atualizar: ")
         new_name = input("Digite o novo nome da tarefa: ")
         update_task_name(tasks, task_index, new_name)
+    elif choice == "4":
+        visualize_tasks(tasks)
+        task_index = input("\nDigite o número da tarefa que deseja completar: ")
+        closed_task(tasks, task_index)
     elif choice == "6":
         break
 
