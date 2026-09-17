@@ -3,6 +3,13 @@ def add_task(tasks, task_name):
     tasks.append(task)
     print(f"\nTask '{task_name}' was added successfully!")
 
+def view_tasks(tasks):
+    print("\n-- Tasks list --")
+    for index, task in enumerate(tasks, start=1):
+        status = "✓" if task["closed"] else " "
+        task_name = task["name"]
+        print(f"{index}. [{status}] - {task_name}")
+
 tasks = []
 
 while True:
@@ -19,6 +26,8 @@ while True:
     if choice == "1":
         task_name = input("Enter the name of the task: ")
         add_task(tasks, task_name)
+    elif choice == "2":
+        view_tasks(tasks)
     elif choice == "6":
         break
 
