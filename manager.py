@@ -14,7 +14,15 @@ def update_task(tasks, task_index, new_task_name):
     adjusted_task_index = int(task_index) - 1
     if adjusted_task_index > 0 and adjusted_task_index < len(tasks):
         tasks[adjusted_task_index]["name"] = new_task_name
-        print(f"\nTask {task_index} updated to '{new_task_name}'")
+        print(f"\nTask {task_index} updated to '{new_task_name}'.")
+    else:
+        print("\nThere is no task in the index entered!")
+
+def close_task(tasks, task_index):
+    adjusted_task_index = int(task_index) - 1
+    if adjusted_task_index > 0 and adjusted_task_index < len(tasks):
+        tasks[adjusted_task_index]["closed"] = True
+        print(f"\nThe task {task_index} was marked as closed!")
     else:
         print("\nThere is no task in the index entered!")
 
@@ -25,7 +33,7 @@ while True:
     print("1. Add task")
     print("2. View tasks")
     print("3. Update task")
-    print("4. Closed task")
+    print("4. Mark as closed task")
     print("5. Remove closed tasks")
     print("6. Exit")
 
@@ -41,6 +49,10 @@ while True:
         task_index = input("\nEnter the index of the task you want to update: ")
         new_task_name = input("Enter the new task name: ")
         update_task(tasks, task_index, new_task_name)
+    elif choice == "4":
+        view_tasks(tasks)
+        task_index = input("\nEnter the index of the task you want mark as closed: ")
+        close_task(tasks, task_index)
     elif choice == "6":
         break
 
