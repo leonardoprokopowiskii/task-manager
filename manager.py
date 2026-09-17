@@ -10,6 +10,14 @@ def view_tasks(tasks):
         task_name = task["name"]
         print(f"{index}. [{status}] - {task_name}")
 
+def update_task(tasks, task_index, new_task_name):
+    adjusted_task_index = int(task_index) - 1
+    if adjusted_task_index > 0 and adjusted_task_index < len(tasks):
+        tasks[adjusted_task_index]["name"] = new_task_name
+        print(f"\nTask {task_index} updated to '{new_task_name}'")
+    else:
+        print("\nThere is no task in the index entered!")
+
 tasks = []
 
 while True:
@@ -28,6 +36,11 @@ while True:
         add_task(tasks, task_name)
     elif choice == "2":
         view_tasks(tasks)
+    elif choice == "3":
+        view_tasks(tasks)
+        task_index = input("\nEnter the index of the task you want to update: ")
+        new_task_name = input("Enter the new task name: ")
+        update_task(tasks, task_index, new_task_name)
     elif choice == "6":
         break
 
