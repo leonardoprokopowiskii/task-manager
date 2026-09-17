@@ -12,7 +12,7 @@ def view_tasks(tasks):
 
 def update_task(tasks, task_index, new_task_name):
     adjusted_task_index = int(task_index) - 1
-    if adjusted_task_index > 0 and adjusted_task_index < len(tasks):
+    if adjusted_task_index >= 0 and adjusted_task_index < len(tasks):
         tasks[adjusted_task_index]["name"] = new_task_name
         print(f"\nTask {task_index} updated to '{new_task_name}'.")
     else:
@@ -20,11 +20,17 @@ def update_task(tasks, task_index, new_task_name):
 
 def close_task(tasks, task_index):
     adjusted_task_index = int(task_index) - 1
-    if adjusted_task_index > 0 and adjusted_task_index < len(tasks):
+    if adjusted_task_index >= 0 and adjusted_task_index < len(tasks):
         tasks[adjusted_task_index]["closed"] = True
         print(f"\nThe task {task_index} was marked as closed!")
     else:
         print("\nThere is no task in the index entered!")
+
+def remove_closed_tasks(tasks):
+    for task in tasks[:]: # [:] creates a copy of the list 
+        if task["closed"]:
+            tasks.remove(task)
+    print("\nClosed tasks has been removed!")
 
 tasks = []
 
@@ -53,6 +59,8 @@ while True:
         view_tasks(tasks)
         task_index = input("\nEnter the index of the task you want mark as closed: ")
         close_task(tasks, task_index)
+    elif choice == "5":
+        remove_closed_tasks(tasks)
     elif choice == "6":
         break
 
